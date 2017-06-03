@@ -15,6 +15,7 @@
        <JFXButton fx:id="signInButton" layoutX="270.0" layoutY="327.0" mnemonicParsing="false" onAction="#signIn" prefHeight="25.0" prefWidth="100.0" text="SIGN IN" />
        <Label layoutX="201.0" layoutY="366.0" prefHeight="17.0" prefWidth="130.0" text="New to This Shit?" />
        <Hyperlink fx:id="registerLink" layoutX="334.0" layoutY="363.0" onAction="#signUp" text="Create an Acoount" />
+      <Label layoutX="272.0" layoutY="412.0" text="KCPIndah ©  2017" />
 
    </children>
    <stylesheets>

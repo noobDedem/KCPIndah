@@ -38,6 +38,7 @@
             </Label>
              <JFXTextField fx:id="phoneInput" focusColor="#009688" layoutX="134.0" layoutY="343.0" prefHeight="25.0" prefWidth="373.0" promptText="Your Phone Number" />
             <JFXButton fx:id="signUpButton" layoutX="272.0" layoutY="391.0" mnemonicParsing="false" onAction="#signUpNewAccount" prefHeight="25.0" prefWidth="96.0" text="SIGN UP" />
+            <Label layoutX="271.0" layoutY="439.0" text="KCPIndah ©  2017" />
       
          </children>
           <stylesheets>

@@ -1,14 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="id.kcpindah.travel.controller.MainController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="316.0" prefWidth="659.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
+   <children>
+      <JFXTextField layoutX="25.0" layoutY="42.0" />
+      <JFXDatePicker layoutX="470.0" layoutY="39.0" />
+      <JFXTextField layoutX="184.0" layoutY="42.0" />
+      <TableView layoutX="25.0" layoutY="95.0" prefHeight="200.0" prefWidth="482.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+      <JFXButton layoutX="592.0" layoutY="105.0" ripplerFill="#009688" text="Search" textFill="#009688" />
+      <JFXButton buttonType="RAISED" layoutX="521.0" layoutY="105.0" ripplerFill="#009688" text="Clear" textFill="#009688" />
+      <Text fill="#009688" layoutX="25.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Travel" />
+      <Text fill="#009688" layoutX="184.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tujuan" />
+      <JFXButton buttonType="RAISED" layoutX="521.0" layoutY="262.0" prefHeight="25.0" prefWidth="120.0" ripplerFill="#009688" text="Book" textFill="#009688" />
+      <JFXComboBox layoutX="338.0" layoutY="42.0" prefHeight="25.0" prefWidth="108.0" />
+      <Text fill="#009688" layoutX="338.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Waktu" />
+      <JFXButton layoutX="521.0" layoutY="237.0" prefHeight="25.0" prefWidth="120.0" ripplerFill="#009688" text="My Account" textFill="#009688" />
+      <Text fill="#009688" layoutX="470.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tanggal" />
+   </children>
 </AnchorPane>

@@ -7,12 +7,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 
 /**
- * Created by SpookyBastard on 6/1/2017.
+ * Created by KCPIndah on 6/1/2017.
  */
 public class SuccessDialog extends JFXDialogLayout {
     public SuccessDialog() {
         this.setHeading(new Text("SUCCESS"));
-        this.setBody(new Text("Account has been registered."));
+        this.setBody(new Text("User Account has been registered."));
     }
 
     public void showDialog(StackPane stackPane) {
