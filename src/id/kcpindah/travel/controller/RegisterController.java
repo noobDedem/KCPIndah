@@ -2,6 +2,9 @@ package id.kcpindah.travel.controller;
 
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import id.kcpindah.travel.dao.DAOManager;
+import id.kcpindah.travel.dao.MySQLUserDAO;
+import id.kcpindah.travel.model.UserAccount;
 import id.kcpindah.travel.view.SuccessDialog;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
@@ -27,9 +30,15 @@ public class RegisterController {
     @FXML
     private JFXTextField phoneInput;
 
+    private UserAccount userAccount = new UserAccount();
 
+    private DAOManager manager = new DAOManager();
+
+    void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
     /**
-     * Called to store new Account info.
+     * Called to store new UserAccount info.
      * */
     @FXML
     public void signUpNewAccount() {
@@ -39,16 +48,27 @@ public class RegisterController {
         String password = passwordInput.getText();
         String phone    = phoneInput.getText();
 
+        userAccount.setName(name);
+        userAccount.setUsername(user);
+        userAccount.setPassword(password);
+        userAccount.setPhoneNumber(phone);
         // TODO : Prevent User for inputting blank input
         // TODO : Validating Password
         // Password must be a combination pf number and character
 
         // TODO : Storing Data
         // Store input data to database
-
+        manager.setUserAccountDAO(new MySQLUserDAO());
+        manager.setUserAccountDAO(new MySQLUserDAO());
+        try {
+            manager.getUserAccountDAO().saveUserAccount(userAccount);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         // TODO : Show a success dialog
         // Make sure data has been stored
         SuccessDialog successDialog = new SuccessDialog();
         successDialog.showDialog(stackPane);
+
     }
 }
