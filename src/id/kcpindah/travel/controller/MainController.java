@@ -5,11 +5,14 @@ import id.kcpindah.travel.dao.MySQLConnection;
 import id.kcpindah.travel.dao.MySQLScheduleDAO;
 import id.kcpindah.travel.dao.MySQLTravelDAO;
 import id.kcpindah.travel.model.UserAccount;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
+import java.sql.Time;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -20,13 +23,13 @@ import com.jfoenix.controls.JFXComboBox;
  */
 public class MainController implements Initializable{
 	@FXML
-    private JFXComboBox<?> travelInput;
+    private JFXComboBox<String> travelInput;
 
     @FXML
-    private JFXComboBox<?> destinationInput;
+    private JFXComboBox<String> destinationInput;
 
     @FXML
-    private JFXComboBox<?> timeInput;
+    private JFXComboBox<Time> timeInput;
 
     @FXML
     private JFXButton clearButton;
@@ -50,6 +53,10 @@ public class MainController implements Initializable{
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<String> travelName = FXCollections.observableArrayList();
+        ObservableList<String> travelDestination = FXCollections.observableArrayList();
+        ObservableList<Time> travelTime = FXCollections.observableArrayList();
+
         MySQLConnection mySQLConnection = new MySQLConnection();
         MySQLScheduleDAO mySQLScheduleDAO = new MySQLScheduleDAO();
         MySQLTravelDAO mySQLTravelDAO = new MySQLTravelDAO();
@@ -57,6 +64,18 @@ public class MainController implements Initializable{
             mySQLConnection.createDatabase();
             mySQLTravelDAO.insertData();
             mySQLScheduleDAO.insertData();
+            mySQLScheduleDAO.getName(travelName);
+            mySQLScheduleDAO.getDestination(travelDestination);
+            mySQLScheduleDAO.getTime(travelTime);
+            for(String name : travelName){
+                travelInput.getItems().add(name);
+            }
+            for(String destination : travelDestination){
+                destinationInput.getItems().add(destination);
+            }
+            for(Time time : travelTime){
+                timeInput.getItems().add(time);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -3,6 +3,7 @@ package id.kcpindah.travel.dao;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Time;
 
 import id.kcpindah.travel.dao.MySQLConnection;
 import javafx.collections.ObservableList;
@@ -52,14 +53,14 @@ public class MySQLScheduleDAO implements ScheduleDAO {
 	}
 
 	@Override
-	public void getTime(ObservableList<String> travelTime) throws Exception {
+	public void getTime(ObservableList<Time> travelTime) throws Exception {
 		String query = "SELECT jam FROM jadwal GROUP BY jam";
 		MySQLConnection mySQLConnection = new MySQLConnection();
 		Connection conn = mySQLConnection.getConnection();
 		Statement st = conn.createStatement();
 		ResultSet rs = st.executeQuery(query);
 		while(rs.next()){
-			String jamTravel = rs.getString("jam");
+			Time jamTravel = rs.getTime("jam");
 			travelTime.add(jamTravel);
 		}
 		
