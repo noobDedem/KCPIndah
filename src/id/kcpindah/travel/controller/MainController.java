@@ -5,17 +5,42 @@ import id.kcpindah.travel.dao.MySQLConnection;
 import id.kcpindah.travel.dao.MySQLScheduleDAO;
 import id.kcpindah.travel.dao.MySQLTravelDAO;
 import id.kcpindah.travel.model.UserAccount;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+
 /**
  * Created by SpookyBastard on 6/1/2017.
  */
 public class MainController implements Initializable{
-    /**
+	@FXML
+    private JFXComboBox<?> travelInput;
+
+    @FXML
+    private JFXComboBox<?> destinationInput;
+
+    @FXML
+    private JFXComboBox<?> timeInput;
+
+    @FXML
+    private JFXButton clearButton;
+
+    @FXML
+    private JFXButton searchButton;
+
+    @FXML
+    private JFXButton myAccountButton;
+
+    @FXML
+    private JFXButton bookButton;
+	
+	/**
      * Called to initialize a controller after its root element has been
      * completely processed.
      *
@@ -39,9 +64,23 @@ public class MainController implements Initializable{
     }
 
     @FXML
-    public void cekcek() {
-        UserAccount userAccount = new UserAccount("Rizqi Hadi Prawira", "doublesinlove", "kiki810kiki", "08996394828");
+    void bookAction(ActionEvent event) {
+    	UserAccount userAccount = new UserAccount("Rizqi Hadi Prawira", "doublesinlove", "kiki810kiki", "08996394828");
         DAOManager manager = new DAOManager();
+    }
+
+    @FXML
+    void clearAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void myAccountAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void searchAction(ActionEvent event) {
 
     }
 }

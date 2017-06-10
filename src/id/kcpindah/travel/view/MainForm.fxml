@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:controller="id.kcpindah.travel.controller.MainController" prefHeight="298.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="298.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="id.kcpindah.travel.controller.MainController">
    <children>
       <TableView layoutX="25.0" layoutY="77.0" prefHeight="200.0" prefWidth="482.0">
         <columns>
@@ -14,12 +14,12 @@
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
-      <JFXButton buttonType="RAISED" layoutX="592.0" layoutY="87.0" ripplerFill="#009688" text="Search" textFill="#009688" />
-      <JFXButton buttonType="RAISED" layoutX="521.0" layoutY="87.0" ripplerFill="#009688" text="Clear" textFill="#009688" />
-      <JFXButton fx:id="bookButton" buttonType="RAISED" layoutX="521.0" layoutY="244.0" onAction="#cekcek" prefHeight="25.0" prefWidth="120.0" ripplerFill="#009688" text="Book" textFill="#009688" />
-      <JFXComboBox fx:id="timeInput" focusColor="#009688" layoutX="338.0" layoutY="24.0" prefHeight="25.0" prefWidth="150.0" promptText="Booking Time" />
-      <JFXButton buttonType="RAISED" layoutX="521.0" layoutY="219.0" prefHeight="25.0" prefWidth="120.0" ripplerFill="#009688" text="My Account" textFill="#009688" />
       <JFXComboBox fx:id="travelInput" layoutX="25.0" layoutY="24.0" prefWidth="150.0" promptText="Travel Name" />
       <JFXComboBox fx:id="destinationInput" layoutX="180.0" layoutY="24.0" prefWidth="150.0" promptText="Destination" />
+      <JFXComboBox fx:id="timeInput" focusColor="#009688" layoutX="338.0" layoutY="24.0" prefHeight="25.0" prefWidth="150.0" promptText="Booking Time" />
+      <JFXButton fx:id="clearButton" buttonType="RAISED" layoutX="521.0" layoutY="87.0" onAction="#clearAction" ripplerFill="#009688" text="Clear" textFill="#009688" />
+      <JFXButton fx:id="searchButton" buttonType="RAISED" layoutX="592.0" layoutY="87.0" onAction="#searchAction" ripplerFill="#009688" text="Search" textFill="#009688" />
+      <JFXButton fx:id="myAccountButton" buttonType="RAISED" layoutX="521.0" layoutY="219.0" onAction="#myAccountAction" prefHeight="25.0" prefWidth="120.0" ripplerFill="#009688" text="My Account" textFill="#009688" />
+      <JFXButton fx:id="bookButton" buttonType="RAISED" layoutX="521.0" layoutY="244.0" onAction="#bookAction" prefHeight="25.0" prefWidth="120.0" ripplerFill="#009688" text="Book" textFill="#009688" />
    </children>
 </AnchorPane>
