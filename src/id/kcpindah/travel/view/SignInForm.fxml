@@ -7,18 +7,24 @@
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 
-<AnchorPane prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="id.kcpindah.travel.controller.SignInController">
+
+<StackPane fx:id="signInStack" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="id.kcpindah.travel.controller.SignInController">
    <children>
-       <JFXTextField fx:id="usernameInput" focusColor="#009688" layoutX="201.0" layoutY="221.0" onAction="#signIn" prefHeight="25.0" prefWidth="240.0" promptText="Username" />
-       <JFXPasswordField fx:id="passwordInput" focusColor="#009688" layoutX="201.0" layoutY="268.0" onAction="#signIn" prefWidth="240.0" promptText="Password" />
-       <JFXButton fx:id="signInButton" layoutX="270.0" layoutY="327.0" mnemonicParsing="false" onAction="#signIn" prefHeight="25.0" prefWidth="100.0" text="SIGN IN" />
-       <Label layoutX="201.0" layoutY="366.0" prefHeight="17.0" prefWidth="130.0" text="New to This Shit?" />
-       <Hyperlink fx:id="registerLink" layoutX="334.0" layoutY="363.0" onAction="#signUp" text="Create an Acoount" />
-      <Label layoutX="272.0" layoutY="412.0" text="KCPIndah ©  2017" />
-
+      <AnchorPane prefHeight="480.0" prefWidth="640.0">
+         <children>
+             <JFXTextField fx:id="usernameInput" focusColor="#009688" layoutX="201.0" layoutY="221.0" onAction="#signIn" prefHeight="25.0" prefWidth="240.0" promptText="Username" />
+             <JFXPasswordField fx:id="passwordInput" focusColor="#009688" layoutX="201.0" layoutY="268.0" onAction="#signIn" prefWidth="240.0" promptText="Password" />
+             <JFXButton fx:id="signInButton" layoutX="270.0" layoutY="327.0" mnemonicParsing="false" onAction="#signIn" prefHeight="25.0" prefWidth="100.0" text="SIGN IN" />
+             <Label layoutX="201.0" layoutY="366.0" prefHeight="17.0" prefWidth="130.0" text="New to This Shit?" />
+             <Hyperlink fx:id="registerLink" layoutX="334.0" layoutY="363.0" onAction="#signUp" text="Create an Acoount" />
+            <Label layoutX="272.0" layoutY="412.0" text="KCPIndah ©  2017" />
+      
+         </children>
+         <stylesheets>
+            <URL value="@styles.css" />
+         </stylesheets>
+      </AnchorPane>
    </children>
-   <stylesheets>
-      <URL value="@styles.css" />
-   </stylesheets>
-</AnchorPane>
+</StackPane>

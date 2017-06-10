@@ -1,13 +1,16 @@
 package id.kcpindah.travel.controller;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.*;
+import id.kcpindah.travel.dao.DAOManager;
+import id.kcpindah.travel.dao.MySQLUserDAO;
+import id.kcpindah.travel.model.UserAccount;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -17,6 +20,9 @@ import java.util.ResourceBundle;
 public class SignInController implements Initializable{
     /* Class attributes */
     @FXML
+    private StackPane signInStack;
+
+    @FXML
     private JFXTextField usernameInput;
 
     @FXML
@@ -25,6 +31,9 @@ public class SignInController implements Initializable{
     @FXML
     private JFXButton signInButton;
 
+    private UserAccount userAccount = new UserAccount();
+
+    private DAOManager manager = new DAOManager();
     /**
      * Called to initialize a controller after its root element has been
      * completely processed.
@@ -39,26 +48,37 @@ public class SignInController implements Initializable{
     }
     @FXML
     public void signIn() {
-        String mockUser = "doublesinlove";
-        String mockPass = "kiki810kiki";
         String username = usernameInput.getText();
-        String password = passwordInput.getText();
+        manager.setUserAccountDAO(new MySQLUserDAO());
+        try {
+           userAccount = manager.getUserAccountDAO().getUserAccount(username);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        if (username.equals(mockUser) && password.equals(mockPass)) {
+        String password = passwordInput.getText();
+        if (username.equals(userAccount.getUsername()) && password.equals(userAccount.getPassword())) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/MainForm.fxml"));
                 Parent mainRoot = fxmlLoader.load();
                 Stage mainStage = new Stage();
                 mainStage.setScene(new Scene(mainRoot));
                 mainStage.setTitle("Travel Ticketing");
+                mainStage.setResizable(false);
                 mainStage.show();
                 signInButton.getScene().getWindow().hide();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else if (!username.equals(mockUser) || !password.equals(mockPass)){
-            System.out.println("Salah");
+        } else if (!username.equals(userAccount.getUsername()) || !password.equals(userAccount.getPassword())){
+            JFXDialogLayout dialogLayout = new JFXDialogLayout();
+            dialogLayout.setHeading(new Text("ERROR"));
+            dialogLayout.setBody(new Text("Username or Password might be wrong."));
+            JFXDialog errorDialog = new JFXDialog();
+            errorDialog.setContent(dialogLayout);
+            errorDialog.show(signInStack);
         }
+
     }
 
     @FXML
@@ -68,7 +88,7 @@ public class SignInController implements Initializable{
             Parent rootRegisterForm = fxmlLoader.load();
             Stage registerStage = new Stage();
             registerStage.setScene(new Scene(rootRegisterForm, 640, 480));
-            registerStage.setTitle("Register Mock Account");
+            registerStage.setTitle("Register Mock UserAccount");
             registerStage.setResizable(false);
             registerStage.show();
         } catch (IOException e) {

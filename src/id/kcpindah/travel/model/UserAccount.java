@@ -3,12 +3,21 @@ package id.kcpindah.travel.model;
 /**
  * Created by KCPIndah on 6/1/2017.
  */
-public class Account {
+public class UserAccount {
     /* Class Attributes */
     private String name;
     private String username;
     private String password;
     private String phoneNumber;
+
+    public UserAccount() {}
+
+    public UserAccount(String name, String username, String password, String phoneNumber) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+    }
 
     public String getName() {
         return name;
