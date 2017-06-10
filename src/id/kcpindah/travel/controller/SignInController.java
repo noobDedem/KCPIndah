@@ -34,6 +34,11 @@ public class SignInController implements Initializable{
     private UserAccount userAccount = new UserAccount();
 
     private DAOManager manager = new DAOManager();
+
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
+
     /**
      * Called to initialize a controller after its root element has been
      * completely processed.
@@ -62,6 +67,8 @@ public class SignInController implements Initializable{
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/MainForm.fxml"));
                 Parent mainRoot = fxmlLoader.load();
                 Stage mainStage = new Stage();
+                MainController mainController = fxmlLoader.getController();
+                mainController.setUserActive(userAccount);
                 mainStage.setScene(new Scene(mainRoot));
                 mainStage.setTitle("Travel Ticketing");
                 mainStage.setResizable(false);
@@ -87,6 +94,8 @@ public class SignInController implements Initializable{
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/RegisterForm.fxml"));
             Parent rootRegisterForm = fxmlLoader.load();
             Stage registerStage = new Stage();
+            RegisterController registerController = fxmlLoader.getController();
+            registerController.setUserAccount(userAccount);
             registerStage.setScene(new Scene(rootRegisterForm, 640, 480));
             registerStage.setTitle("Register Mock UserAccount");
             registerStage.setResizable(false);

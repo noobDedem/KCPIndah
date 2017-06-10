@@ -1,6 +1,7 @@
 package id.kcpindah.travel.dao;
 
 import id.kcpindah.travel.model.Schedule;
+import id.kcpindah.travel.model.ScheduleProperty;
 import javafx.collections.ObservableList;
 
 import java.sql.Time;
@@ -17,5 +18,5 @@ public interface ScheduleDAO {
     void getName(ObservableList<String> travelName) throws Exception;
 	void getDestination(ObservableList<String> travelDestination) throws Exception;
 	void getTime(ObservableList<Time> travelTime) throws Exception;
-	ArrayList<Schedule> getSchedule() throws Exception;
+	ArrayList<ScheduleProperty> getSchedule() throws Exception;
 }
