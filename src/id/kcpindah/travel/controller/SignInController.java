@@ -64,6 +64,7 @@ public class SignInController implements Initializable{
                 Stage mainStage = new Stage();
                 mainStage.setScene(new Scene(mainRoot));
                 mainStage.setTitle("Travel Ticketing");
+                mainStage.setResizable(false);
                 mainStage.show();
                 signInButton.getScene().getWindow().hide();
             } catch (IOException e) {

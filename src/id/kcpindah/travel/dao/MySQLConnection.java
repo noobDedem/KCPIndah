@@ -8,6 +8,8 @@ import java.sql.Statement;
 /**
  * Created by SpookyBastard on 6/3/2017.
  */
+
+
 public class MySQLConnection {
     Connection connection = null;
     Statement statement;

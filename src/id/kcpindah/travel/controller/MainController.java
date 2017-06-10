@@ -2,13 +2,13 @@ package id.kcpindah.travel.controller;
 
 import id.kcpindah.travel.dao.DAOManager;
 import id.kcpindah.travel.dao.MySQLConnection;
-import id.kcpindah.travel.dao.MySQLUserDAO;
+import id.kcpindah.travel.dao.MySQLScheduleDAO;
+import id.kcpindah.travel.dao.MySQLTravelDAO;
 import id.kcpindah.travel.model.UserAccount;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /**
@@ -26,9 +26,14 @@ public class MainController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         MySQLConnection mySQLConnection = new MySQLConnection();
+        MySQLScheduleDAO mySQLScheduleDAO = new MySQLScheduleDAO();
+        MySQLTravelDAO mySQLTravelDAO = new MySQLTravelDAO();
         try {
             mySQLConnection.createDatabase();
-        } catch (SQLException e) {
+            mySQLTravelDAO.insertData();
+            mySQLScheduleDAO.insertData();
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
