@@ -1,6 +1,9 @@
 package id.kcpindah.travel.controller;
 
 import com.jfoenix.controls.JFXTextField;
+
+import id.kcpindah.travel.dao.MySQLBookingDAO;
+import id.kcpindah.travel.model.Booking;
 import id.kcpindah.travel.model.ScheduleProperty;
 import id.kcpindah.travel.model.UserAccount;
 import javafx.fxml.FXML;
@@ -8,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.sql.Time;
 import java.util.ResourceBundle;
 
 /**
@@ -56,9 +60,16 @@ public class BookController implements Initializable{
     }
 
     @FXML
-    public void bookOrder() {
-        System.out.println(userActive.getUsername());
-        System.out.println(userSchedule.getTravelName());
+    public void bookOrder() throws Exception {
+        String user = userActive.getUsername();
+        String alamat = address.getText();
+        String travel = userSchedule.getTravelName();
+        String destination = userSchedule.getTravelDestination();
+        Time time = userSchedule.getTravelSchedule();
+        Booking booking = new Booking(user,alamat,travel,destination,time);
+        MySQLBookingDAO mySQLBookingDAO = new MySQLBookingDAO();
+        mySQLBookingDAO.addBooking(booking);
+        
     }
 
 }

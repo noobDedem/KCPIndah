@@ -2,6 +2,9 @@ package id.kcpindah.travel.controller;
 
 import com.jfoenix.controls.*;
 import id.kcpindah.travel.dao.DAOManager;
+import id.kcpindah.travel.dao.MySQLConnection;
+import id.kcpindah.travel.dao.MySQLScheduleDAO;
+import id.kcpindah.travel.dao.MySQLTravelDAO;
 import id.kcpindah.travel.dao.MySQLUserDAO;
 import id.kcpindah.travel.model.UserAccount;
 import javafx.fxml.FXML;
@@ -15,6 +18,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class SignInController implements Initializable{
@@ -49,7 +53,20 @@ public class SignInController implements Initializable{
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+    	MySQLConnection mySQLConnection = new MySQLConnection();
+    	MySQLTravelDAO mySQLTravelDAO = new MySQLTravelDAO();
+    	MySQLScheduleDAO mySQLScheduleDAO = new MySQLScheduleDAO();
+    	try {
+			mySQLConnection.createDatabase();
+			mySQLConnection.createTable(mySQLConnection.getQueryUser());
+			mySQLConnection.createTable(mySQLConnection.getQueryTravel());
+			mySQLConnection.createTable(mySQLConnection.getQueryJadwal());
+			mySQLConnection.createTable(mySQLConnection.getQueryBooking());
+			mySQLTravelDAO.insertData();
+            mySQLScheduleDAO.insertData();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     }
     @FXML
     public void signIn() {

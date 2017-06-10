@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="300.0" prefWidth="169.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="id.kcpindah.travel.controller.BookController">
+   <children>
+      <JFXTextField fx:id="username" layoutX="14.0" layoutY="45.0" />
+      <JFXTextField fx:id="address" layoutX="14.0" layoutY="84.0" promptText="Alamat" />
+      <JFXTextField fx:id="travel" layoutX="14.0" layoutY="125.0" />
+      <JFXTextField fx:id="destination" layoutX="14.0" layoutY="160.0" />
+      <JFXTextField fx:id="schedule" layoutX="14.0" layoutY="199.0" />
+      <JFXButton layoutX="98.0" layoutY="245.0" text="Book" onAction="#bookOrder" />
+   </children>
+</AnchorPane>

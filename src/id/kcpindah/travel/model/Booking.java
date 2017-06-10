@@ -1,5 +1,6 @@
 package id.kcpindah.travel.model;
 
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -8,13 +9,21 @@ import java.time.LocalTime;
  */
 public class Booking {
     private String username;
-    private String travelName;
-    private LocalDate bookingDate;
-    private LocalTime bookingTime;
-    private String destination;
     private String address;
+    private String travelName;
+    private String destination;
+    private Time bookingTime;
+    
+    
 
     public Booking(){}
+    public Booking(String username, String address, String travelName, String destination, Time bookingTime){
+    	this.username=username;
+    	this.address=address;
+    	this.travelName=travelName;
+    	this.destination=destination;
+    	this.bookingTime=bookingTime;
+    }
 
     public String getUsername() {
         return username;
@@ -40,18 +49,6 @@ public class Booking {
         this.destination = destination;
     }
 
-    public LocalDate getBookingDate() {
-        return bookingDate;
-    }
-
-    public LocalTime getBookingTime() {
-        return bookingTime;
-    }
-
-    public void setBookingDate(LocalDate bookingDate) {
-        this.bookingDate = bookingDate;
-    }
-
     public String getAddress() {
         return address;
     }
@@ -60,7 +57,11 @@ public class Booking {
         this.address = address;
     }
 
-    public void setBookingTime(LocalTime bookingTime) {
-        this.bookingTime = bookingTime;
-    }
+	public Time getBookingTime() {
+		return bookingTime;
+	}
+
+	public void setBookingTime(Time bookingTime) {
+		this.bookingTime = bookingTime;
+	}
 }

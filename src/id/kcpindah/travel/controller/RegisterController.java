@@ -5,6 +5,8 @@ import com.jfoenix.controls.JFXTextField;
 import id.kcpindah.travel.dao.DAOManager;
 import id.kcpindah.travel.dao.MySQLUserDAO;
 import id.kcpindah.travel.model.UserAccount;
+import id.kcpindah.travel.view.ConnectionFailedDialog;
+import id.kcpindah.travel.view.FailedDialog;
 import id.kcpindah.travel.view.SuccessDialog;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
@@ -42,7 +44,7 @@ public class RegisterController {
      * */
     @FXML
     public void signUpNewAccount() {
-        // Get Input
+    	// Get Input
         String name     = nameInput.getText();
         String user     = usernameInput.getText();
         String password = passwordInput.getText();
@@ -53,22 +55,41 @@ public class RegisterController {
         userAccount.setPassword(password);
         userAccount.setPhoneNumber(phone);
         // TODO : Prevent User for inputting blank input
+        if(name.equals("") || user.equals("") || password.equals("") || phone.equals("")){
+        	System.out.println("FAILED");
+        	FailedDialog failedDialog = new FailedDialog();
+        	failedDialog.showDialog(stackPane);
+        }else{
+        	manager.setUserAccountDAO(new MySQLUserDAO());
+            manager.setUserAccountDAO(new MySQLUserDAO());
+            try {
+                manager.getUserAccountDAO().saveUserAccount(userAccount);
+                SuccessDialog successDialog = new SuccessDialog();
+                successDialog.showDialog(stackPane);
+            } catch (Exception e) {
+            	e.printStackTrace();
+                ConnectionFailedDialog connectioniFailedDialog = new ConnectionFailedDialog();
+                connectioniFailedDialog.showDialog(stackPane);
+            }
+        }
         // TODO : Validating Password
         // Password must be a combination pf number and character
 
         // TODO : Storing Data
         // Store input data to database
-        manager.setUserAccountDAO(new MySQLUserDAO());
-        manager.setUserAccountDAO(new MySQLUserDAO());
-        try {
-            manager.getUserAccountDAO().saveUserAccount(userAccount);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        manager.setUserAccountDAO(new MySQLUserDAO());
+//        manager.setUserAccountDAO(new MySQLUserDAO());
+//        try {
+//            manager.getUserAccountDAO().saveUserAccount(userAccount);
+//            SuccessDialog successDialog = new SuccessDialog();
+//            successDialog.showDialog(stackPane);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         // TODO : Show a success dialog
         // Make sure data has been stored
-        SuccessDialog successDialog = new SuccessDialog();
-        successDialog.showDialog(stackPane);
+//        SuccessDialog successDialog = new SuccessDialog();
+//        successDialog.showDialog(stackPane);
 
     }
 }
