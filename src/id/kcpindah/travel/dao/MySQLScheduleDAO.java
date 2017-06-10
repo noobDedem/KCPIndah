@@ -1,10 +1,15 @@
 package id.kcpindah.travel.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Time;
+import java.util.ArrayList;
 
 import id.kcpindah.travel.dao.MySQLConnection;
+import id.kcpindah.travel.model.Schedule;
+import id.kcpindah.travel.model.ScheduleProperty;
 import javafx.collections.ObservableList;
 
 /**
@@ -52,16 +57,35 @@ public class MySQLScheduleDAO implements ScheduleDAO {
 	}
 
 	@Override
-	public void getTime(ObservableList<String> travelTime) throws Exception {
+	public void getTime(ObservableList<Time> travelTime) throws Exception {
 		String query = "SELECT jam FROM jadwal GROUP BY jam";
 		MySQLConnection mySQLConnection = new MySQLConnection();
 		Connection conn = mySQLConnection.getConnection();
 		Statement st = conn.createStatement();
 		ResultSet rs = st.executeQuery(query);
 		while(rs.next()){
-			String jamTravel = rs.getString("jam");
+			Time jamTravel = rs.getTime("jam");
 			travelTime.add(jamTravel);
 		}
-		
 	}
+
+    @Override
+    public ArrayList<ScheduleProperty> getSchedule() throws Exception {
+        ArrayList<ScheduleProperty> listSchedule = new ArrayList<>();
+        MySQLConnection mySQLConnection = new MySQLConnection();
+        String query = "SELECT namatravel, jam, tujuan from jadwal";
+        Connection connection = mySQLConnection.getConnection();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(query);
+        while(resultSet.next()) {
+            String travelName = resultSet.getString("namatravel");
+            String travelDestination = resultSet.getString("tujuan");
+            Time travelSchedule = resultSet.getTime("jam");
+            ScheduleProperty schedule = new ScheduleProperty(travelName, travelDestination, travelSchedule);
+            listSchedule.add(schedule);
+        }
+        return listSchedule;
+    }
+
+
 }

@@ -13,28 +13,27 @@ import java.sql.Statement;
 public class MySQLConnection {
     Connection connection = null;
     Statement statement;
-    private String queryUser = "CREATE TABLE IF NOT EXIST User("
+    private String queryUser = "CREATE TABLE IF NOT EXISTS User("
             + "nama VARCHAR(20) NOT NULL, "
             + "username VARCHAR(20) NOT NULL PRIMARY KEY, "
             + "password VARCHAR(20) NOT NULL, "
             + "tlp VARCHAR(20) NOT NULL "
             + ");";
-    private String queryTravel = "CREATE TABLE IF NOT EXIST travel("
+    private String queryTravel = "CREATE TABLE IF NOT EXISTS travel("
             + "namatravel VARCHAR(20) NOT NULL PRIMARY KEY, "
             + "alamat VARCHAR(50) NOT NULL, "
             + "tlp VARCHAR(20) NOT NULL "
             + ");";
-    private String queryJadwal = "CREATE TABLE IF NOT EXIST jadwal("
+    private String queryJadwal = "CREATE TABLE IF NOT EXISTS jadwal("
             + "namatravel VARCHAR(20) NOT NULL, "
             + "jam time NOT NULL, "
             + "tujuan VARCHAR(20) NOT NULL, "
             + "PRIMARY KEY(jam, tujuan), "
             + "FOREIGN KEY(namatravel) REFERENCES travel(namatravel) "
             + ");";
-    private String queryBooking = "CREATE TABLE IF NOT EXIST booking("
+    private String queryBooking = "CREATE TABLE IF NOT EXISTS booking("
             + "username VARCHAR(20) NOT NULL, "
             + "namatravel VARCHAR(20) NOT NULL, "
-            + "tgl date NOT NULL, "
             + "jam time NOT NULL, "
             + "tujuan VARCHAR(20) NOT NULL, "
             + "alamat VARCHAR(50) NOT NULL, "
@@ -46,12 +45,12 @@ public class MySQLConnection {
 
     public Connection getConnection() throws Exception {
         Class.forName("com.mysql.jdbc.Driver");
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Travel", "root", "kiki810kiki");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/Travel", "root", "theaurions00");
         return connection;
     }
 
     public void createDatabase() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/?user=root&password=kiki810kiki");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/?user=root&password=theaurions00");
         statement = connection.createStatement();
         statement.executeUpdate("CREATE DATABASE IF NOT EXISTS Travel");
     }
