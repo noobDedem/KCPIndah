@@ -8,10 +8,11 @@
 
 <AnchorPane prefHeight="298.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="id.kcpindah.travel.controller.MainController">
    <children>
-      <TableView layoutX="25.0" layoutY="77.0" prefHeight="200.0" prefWidth="482.0">
+      <TableView fx:id="tableViewSchedule" layoutX="25.0" layoutY="77.0" prefHeight="200.0" prefWidth="482.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="columnName" prefWidth="198.0" text="Nama Travel" />
+          <TableColumn fx:id="columnDestination" minWidth="0.0" prefWidth="164.0" text="Tujuan" />
+            <TableColumn fx:id="columnSchedule" prefWidth="119.0" text="Jam" />
         </columns>
       </TableView>
       <JFXComboBox fx:id="travelInput" layoutX="25.0" layoutY="24.0" prefWidth="150.0" promptText="Travel Name" />

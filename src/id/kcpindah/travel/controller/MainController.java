@@ -4,6 +4,7 @@ import id.kcpindah.travel.dao.DAOManager;
 import id.kcpindah.travel.dao.MySQLConnection;
 import id.kcpindah.travel.dao.MySQLScheduleDAO;
 import id.kcpindah.travel.dao.MySQLTravelDAO;
+import id.kcpindah.travel.model.Schedule;
 import id.kcpindah.travel.model.UserAccount;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,10 +14,14 @@ import javafx.fxml.Initializable;
 
 import java.net.URL;
 import java.sql.Time;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * Created by SpookyBastard on 6/1/2017.
@@ -42,8 +47,13 @@ public class MainController implements Initializable{
 
     @FXML
     private JFXButton bookButton;
-	
-	/**
+
+    @FXML
+    private TableView<Schedule> tableViewSchedule;
+
+    @FXML
+    private TableColumn columnName, columnDestination, columnSchedule;
+    /**
      * Called to initialize a controller after its root element has been
      * completely processed.
      *
@@ -53,6 +63,7 @@ public class MainController implements Initializable{
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ArrayList<Schedule> listSchedule = new ArrayList<>();
         ObservableList<String> travelName = FXCollections.observableArrayList();
         ObservableList<String> travelDestination = FXCollections.observableArrayList();
         ObservableList<Time> travelTime = FXCollections.observableArrayList();
@@ -76,6 +87,14 @@ public class MainController implements Initializable{
             for(Time time : travelTime){
                 timeInput.getItems().add(time);
             }
+            listSchedule = mySQLScheduleDAO.getSchedule();
+            ObservableList<Schedule> tableSchedule = FXCollections.observableArrayList(listSchedule);
+            columnName.setCellValueFactory(new PropertyValueFactory<Schedule, String>("travelName"));
+            columnDestination.setCellValueFactory(new PropertyValueFactory<Schedule, String>("travelDestination"));
+            columnSchedule.setCellValueFactory(new PropertyValueFactory<Schedule, Time>("travelSchedule"));
+            tableViewSchedule.setItems(tableSchedule);
+
+
 
         } catch (Exception e) {
             e.printStackTrace();
