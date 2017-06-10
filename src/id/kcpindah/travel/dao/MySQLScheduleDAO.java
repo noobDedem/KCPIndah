@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import id.kcpindah.travel.dao.MySQLConnection;
 import id.kcpindah.travel.model.Schedule;
+import id.kcpindah.travel.model.ScheduleProperty;
 import javafx.collections.ObservableList;
 
 /**
@@ -68,8 +69,8 @@ public class MySQLScheduleDAO implements ScheduleDAO {
 	}
 
     @Override
-    public ArrayList<Schedule> getSchedule() throws Exception {
-        ArrayList<Schedule> listSchedule = new ArrayList<>();
+    public ArrayList<ScheduleProperty> getSchedule() throws Exception {
+        ArrayList<ScheduleProperty> listSchedule = new ArrayList<>();
         MySQLConnection mySQLConnection = new MySQLConnection();
         String query = "SELECT namatravel, jam, tujuan from jadwal";
         Connection connection = mySQLConnection.getConnection();
@@ -79,7 +80,7 @@ public class MySQLScheduleDAO implements ScheduleDAO {
             String travelName = resultSet.getString("namatravel");
             String travelDestination = resultSet.getString("tujuan");
             Time travelSchedule = resultSet.getTime("jam");
-            Schedule schedule = new Schedule(travelName, travelDestination, travelSchedule);
+            ScheduleProperty schedule = new ScheduleProperty(travelName, travelDestination, travelSchedule);
             listSchedule.add(schedule);
         }
         return listSchedule;
