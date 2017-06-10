@@ -2,7 +2,6 @@ package id.kcpindah.travel.view;
 
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
-import javafx.scene.control.Dialog;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 

@@ -99,13 +99,9 @@ public class MainController implements Initializable{
         ObservableList<String> travelDestination = FXCollections.observableArrayList();
         ObservableList<Time> travelTime = FXCollections.observableArrayList();
 
-        MySQLConnection mySQLConnection = new MySQLConnection();
         MySQLScheduleDAO mySQLScheduleDAO = new MySQLScheduleDAO();
         MySQLTravelDAO mySQLTravelDAO = new MySQLTravelDAO();
         try {
-            mySQLConnection.createDatabase();
-            mySQLTravelDAO.insertData();
-            mySQLScheduleDAO.insertData();
             mySQLScheduleDAO.getName(travelName);
             mySQLScheduleDAO.getDestination(travelDestination);
             mySQLScheduleDAO.getTime(travelTime);
