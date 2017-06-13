@@ -45,12 +45,12 @@ public class MySQLConnection {
 
     public Connection getConnection() throws Exception {
         Class.forName("com.mysql.jdbc.Driver");
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/Travel", "root", "theaurions00");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/Travel", "root", "kiki810kiki");
         return connection;
     }
 
     public void createDatabase() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3307/?user=root&password=theaurions00");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/?user=root&password=kiki810kiki");
         statement = connection.createStatement();
         statement.executeUpdate("CREATE DATABASE IF NOT EXISTS Travel");
     }
