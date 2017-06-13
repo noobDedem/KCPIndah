@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -87,6 +88,7 @@ public class SignInController implements Initializable{
                 MainController mainController = fxmlLoader.getController();
                 mainController.setUserActive(userAccount);
                 mainStage.setScene(new Scene(mainRoot));
+                mainStage.getIcons().add(new Image("/id/kcpindah/travel/TravelLogo.png"));
                 mainStage.setTitle("Travel Ticketing");
                 mainStage.setResizable(false);
                 mainStage.show();
@@ -114,6 +116,7 @@ public class SignInController implements Initializable{
             RegisterController registerController = fxmlLoader.getController();
             registerController.setUserAccount(userAccount);
             registerStage.setScene(new Scene(rootRegisterForm, 640, 480));
+            registerStage.getIcons().add(new Image("/id/kcpindah/travel/TravelLogo.png"));
             registerStage.setTitle("Register Mock UserAccount");
             registerStage.setResizable(false);
             registerStage.show();
