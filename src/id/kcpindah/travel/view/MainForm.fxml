@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="298.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="id.kcpindah.travel.controller.MainController">
+<AnchorPane stylesheets="@styles.css" prefHeight="298.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="id.kcpindah.travel.controller.MainController">
    <children>
       <TableView fx:id="tableViewSchedule" layoutX="25.0" layoutY="77.0" prefHeight="200.0" prefWidth="482.0">
         <columns>

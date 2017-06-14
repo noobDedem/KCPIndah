@@ -4,7 +4,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="300.0" prefWidth="169.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="id.kcpindah.travel.controller.BookController">
+<AnchorPane stylesheets="@styles.css" prefHeight="300.0" prefWidth="169.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="id.kcpindah.travel.controller.BookController">
    <children>
       <JFXTextField fx:id="username" layoutX="14.0" layoutY="45.0" />
       <JFXTextField fx:id="address" layoutX="14.0" layoutY="84.0" promptText="Alamat" />

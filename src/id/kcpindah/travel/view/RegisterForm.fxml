@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="id.kcpindah.travel.controller.RegisterController">
+<StackPane fx:id="stackPane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="id.kcpindah.travel.controller.RegisterController">
    <children>
       <AnchorPane prefHeight="480.0" prefWidth="640.0">
          <children>

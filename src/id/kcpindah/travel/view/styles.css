@@ -1,5 +1,38 @@
-#signInButton, #signUpButton {
+.jfx-button {
     -fx-background-color: #009688;
     -fx-text-fill: white;
     -jfx-button-type: RAISED;
+}
+
+.table-view{
+	-fx-background-color : transparent;
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.table-view .column-header {
+    -fx-background-color: #009688;
+}
+
+.table-row-cell{
+    -fx-background-color: -fx-table-cell-border-color, #FFFFFF;
+}
+
+.table-row-cell:odd{
+    -fx-background-color: -fx-table-cell-border-color, #FFFFFF;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #4DB6AC;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover{
+	-fx-background-color: #009688;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected{
+	-fx-background-color: #009688;
 }
