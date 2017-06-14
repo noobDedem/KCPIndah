@@ -1,13 +1,13 @@
 package id.kcpindah.travel.controller;
 
-import id.kcpindah.travel.dao.DAOManager;
-import id.kcpindah.travel.dao.MySQLConnection;
+import com.jfoenix.controls.JFXTextField;
 import id.kcpindah.travel.dao.MySQLScheduleDAO;
 import id.kcpindah.travel.dao.MySQLTravelDAO;
-import id.kcpindah.travel.model.Schedule;
 import id.kcpindah.travel.model.ScheduleProperty;
 import id.kcpindah.travel.model.UserAccount;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -17,10 +17,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -28,7 +30,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -37,13 +38,10 @@ import javafx.stage.Stage;
  */
 public class MainController implements Initializable{
 	@FXML
-    private JFXComboBox<String> travelInput;
+    private JFXTextField travelInput;
 
     @FXML
-    private JFXComboBox<String> destinationInput;
-
-    @FXML
-    private JFXComboBox<Time> timeInput;
+    private JFXTextField destinationInput;
 
     @FXML
     private JFXButton clearButton;
@@ -81,7 +79,7 @@ public class MainController implements Initializable{
         dataSchedule.addAll(ls);
     }
 
-    public void setUserActive(UserAccount userActive) {
+    void setUserActive(UserAccount userActive) {
         this.userActive = userActive;
     }
 
@@ -95,70 +93,28 @@ public class MainController implements Initializable{
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ArrayList<ScheduleProperty> listSchedule;
         ObservableList<String> travelName = FXCollections.observableArrayList();
         ObservableList<String> travelDestination = FXCollections.observableArrayList();
         ObservableList<Time> travelTime = FXCollections.observableArrayList();
 
         MySQLScheduleDAO mySQLScheduleDAO = new MySQLScheduleDAO();
-        MySQLTravelDAO mySQLTravelDAO = new MySQLTravelDAO();
         try {
             mySQLScheduleDAO.getName(travelName);
             mySQLScheduleDAO.getDestination(travelDestination);
             mySQLScheduleDAO.getTime(travelTime);
-            for(String name : travelName){
-                travelInput.getItems().add(name);
-            }
-            for(String destination : travelDestination){
-                destinationInput.getItems().add(destination);
-            }
-            for(Time time : travelTime){
-                timeInput.getItems().add(time);
-            }
-//            listSchedule = mySQLScheduleDAO.getSchedule();
-//            ObservableList<ScheduleProperty> tableSchedule = FXCollections.observableArrayList(listSchedule);
-//            columnName.setCellValueFactory(new PropertyValueFactory<ScheduleProperty, String>("travelName"));
-//            columnDestination.setCellValueFactory(new PropertyValueFactory<ScheduleProperty, String>("travelDestination"));
-//            columnSchedule.setCellValueFactory(new PropertyValueFactory<ScheduleProperty, Time>("travelSchedule"));
-//            tableViewSchedule.setItems(tableSchedule);
+
             columnName.setCellValueFactory(cellData -> cellData.getValue().getTravelNameProperty());
             columnDestination.setCellValueFactory(cellData -> cellData.getValue().getTravelDestinationProperty());
             columnSchedule.setCellValueFactory(cellData -> cellData.getValue().getTravelScheduleProperty());
 
             FilteredList<ScheduleProperty> filteredList = new FilteredList<>(dataSchedule, p -> true);
 
-            travelInput.valueProperty().addListener((observable, oldValue, newValue) -> filteredList.setPredicate(scheduleProperty -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                if (scheduleProperty.getTravelName().contains(newValue)) {
-                    return true;
-                }
 
-                return false;
-            }));
+            filteredList.predicateProperty().bind(Bindings.createObjectBinding(() ->
+            scheduleProperty -> scheduleProperty.getTravelName().contains(travelInput.getText())
+            && scheduleProperty.getTravelDestination().contains(destinationInput.getText()),
+                    travelInput.textProperty(), destinationInput.textProperty()));
 
-            destinationInput.valueProperty().addListener((observable, oldValue, newValue) -> filteredList.setPredicate(scheduleProperty -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-                if (scheduleProperty.getTravelDestination().contains(newValue)) {
-                    return true;
-                }
-
-                return false;
-            }));
-
-            timeInput.valueProperty().addListener((observable, oldValue, newValue) -> filteredList.setPredicate(scheduleProperty -> {
-                if (newValue == null) {
-                    return true;
-                }
-                if (scheduleProperty.getTravelSchedule().equals(newValue)) {
-                    return true;
-                }
-
-                return false;
-            }));
 
             SortedList<ScheduleProperty> sortedList = new SortedList<>(filteredList);
             sortedList.comparatorProperty().bind(tableViewSchedule.comparatorProperty());
@@ -194,17 +150,28 @@ public class MainController implements Initializable{
     }
 
     @FXML
-    void clearAction(ActionEvent event) {
-        System.out.println(userActive.getUsername());
+    void clearAction() {
+        travelInput.setText("");
+        destinationInput.setText("");
     }
 
     @FXML
-    void myAccountAction(ActionEvent event) {
-
+    void myAccountAction() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/MyAccountForm.fxml"));
+        Parent accountRoot = fxmlLoader.load();
+        Stage accountStage = new Stage();
+        MyAccountController myAccountController = fxmlLoader.getController();
+        myAccountController.setUserActive(userActive);
+        myAccountController.setUserSchedule(userSchedule);
+        accountStage.setScene(new Scene(accountRoot, 480, 276));
+        accountStage.setTitle("My Account");
+        accountStage.getIcons().add(new Image("/id/kcpindah/travel/TravelLogo.png"));
+        accountStage.setResizable(false);
+        accountStage.show();
     }
 
     @FXML
-    void searchAction(ActionEvent event) {
+    void searchAction() {
 
     }
 }

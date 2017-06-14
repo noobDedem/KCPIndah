@@ -1,6 +1,5 @@
 package id.kcpindah.travel.dao;
 
-import id.kcpindah.travel.model.Schedule;
 import id.kcpindah.travel.model.ScheduleProperty;
 import javafx.collections.ObservableList;
 
