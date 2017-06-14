@@ -17,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -155,8 +156,18 @@ public class MainController implements Initializable{
     }
 
     @FXML
-    void myAccountAction() {
-
+    void myAccountAction() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/MyAccountForm.fxml"));
+        Parent accountRoot = fxmlLoader.load();
+        Stage accountStage = new Stage();
+        MyAccountController myAccountController = fxmlLoader.getController();
+        myAccountController.setUserActive(userActive);
+        myAccountController.setUserSchedule(userSchedule);
+        accountStage.setScene(new Scene(accountRoot, 480, 276));
+        accountStage.setTitle("My Account");
+        accountStage.getIcons().add(new Image("/id/kcpindah/travel/TravelLogo.png"));
+        accountStage.setResizable(false);
+        accountStage.show();
     }
 
     @FXML

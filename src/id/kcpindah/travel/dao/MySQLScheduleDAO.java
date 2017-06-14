@@ -1,14 +1,11 @@
 package id.kcpindah.travel.dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Time;
 import java.util.ArrayList;
 
-import id.kcpindah.travel.dao.MySQLConnection;
-import id.kcpindah.travel.model.Schedule;
 import id.kcpindah.travel.model.ScheduleProperty;
 import javafx.collections.ObservableList;
 
