@@ -29,6 +29,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -185,6 +186,7 @@ public class MainController implements Initializable{
             bookController.schedule.setText(String.valueOf(userSchedule.getTravelSchedule()));
             bookingStage.setScene(new Scene(bookingRoot, 169, 300));
             bookingStage.setTitle("Confirm Order");
+            bookingStage.getIcons().add(new Image("/id/kcpindah/travel/TravelLogo.png"));
             bookingStage.setResizable(false);
             bookingStage.show();
         }
