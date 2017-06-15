@@ -59,7 +59,7 @@ public class RegisterController {
         	failedDialog.showDialog(stackPane);
         }else if(password != pattern){
         	System.out.println("FAILED");
-        	PasswordPatternDialog FailedDialog = new PasswordPatternDialog();
+        	PasswordPatternDialog failedDialog = new PasswordPatternDialog();
         	failedDialog.showDialog(stackPane);
         }else{
         	manager.setUserAccountDAO(new MySQLUserDAO());
