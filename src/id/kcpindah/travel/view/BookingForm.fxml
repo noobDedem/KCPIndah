@@ -4,13 +4,13 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane stylesheets="@styles.css" prefHeight="300.0" prefWidth="169.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="id.kcpindah.travel.controller.BookController">
+<AnchorPane prefHeight="300.0" prefWidth="300.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="id.kcpindah.travel.controller.BookController">
    <children>
-      <JFXTextField fx:id="username" layoutX="14.0" layoutY="45.0" />
-      <JFXTextField fx:id="address" layoutX="14.0" layoutY="84.0" promptText="Alamat" />
-      <JFXTextField fx:id="travel" layoutX="14.0" layoutY="125.0" />
-      <JFXTextField fx:id="destination" layoutX="14.0" layoutY="160.0" />
-      <JFXTextField fx:id="schedule" layoutX="14.0" layoutY="199.0" />
-      <JFXButton layoutX="98.0" layoutY="245.0" text="Book" onAction="#bookOrder" />
+      <JFXTextField fx:id="username" layoutX="29.0" layoutY="45.0" prefHeight="25.0" prefWidth="242.0" />
+      <JFXTextField fx:id="address" layoutX="29.0" layoutY="84.0" prefHeight="25.0" prefWidth="242.0" promptText="Alamat" />
+      <JFXTextField fx:id="travel" layoutX="29.0" layoutY="125.0" prefHeight="25.0" prefWidth="242.0" />
+      <JFXTextField fx:id="destination" layoutX="29.0" layoutY="159.0" prefHeight="25.0" prefWidth="242.0" />
+      <JFXTextField fx:id="schedule" layoutX="29.0" layoutY="199.0" prefHeight="25.0" prefWidth="242.0" />
+      <JFXButton layoutX="129.0" layoutY="245.0" onAction="#bookOrder" text="Book" />
    </children>
 </AnchorPane>

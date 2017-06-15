@@ -7,6 +7,7 @@ import id.kcpindah.travel.dao.MySQLUserDAO;
 import id.kcpindah.travel.model.UserAccount;
 import id.kcpindah.travel.view.ConnectionFailedDialog;
 import id.kcpindah.travel.view.FailedDialog;
+import id.kcpindah.travel.view.PasswordPatternDialog;
 import id.kcpindah.travel.view.SuccessDialog;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
@@ -49,19 +50,24 @@ public class RegisterController {
         String user     = usernameInput.getText();
         String password = passwordInput.getText();
         String phone    = phoneInput.getText();
-
-        userAccount.setName(name);
-        userAccount.setUsername(user);
-        userAccount.setPassword(password);
-        userAccount.setPhoneNumber(phone);
+        String pattern = "(?=.*[0-9])(?=\\S+$).{4,}";
+        
         // TODO : Prevent User for inputting blank input
         if(name.equals("") || user.equals("") || password.equals("") || phone.equals("")){
         	System.out.println("FAILED");
         	FailedDialog failedDialog = new FailedDialog();
         	failedDialog.showDialog(stackPane);
+        }else if(password != pattern){
+        	System.out.println("FAILED");
+        	PasswordPatternDialog failedDialog = new PasswordPatternDialog();
+        	failedDialog.showDialog(stackPane);
         }else{
         	manager.setUserAccountDAO(new MySQLUserDAO());
             manager.setUserAccountDAO(new MySQLUserDAO());
+            userAccount.setName(name);
+            userAccount.setUsername(user);
+            userAccount.setPassword(password);
+            userAccount.setPhoneNumber(phone);
             try {
                 manager.getUserAccountDAO().saveUserAccount(userAccount);
                 SuccessDialog successDialog = new SuccessDialog();
