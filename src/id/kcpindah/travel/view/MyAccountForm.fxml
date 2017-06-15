@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane stylesheets="@styles.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="id.kcpindah.travel.controller.MyAccountController">
+   <children>
+      <AnchorPane prefHeight="276.0" prefWidth="480.0">
+         <children>
+            <TableView fx:id="tableAccount" layoutX="31.0" layoutY="40.0" prefHeight="200.0" prefWidth="418.0">
+              <columns>
+                <TableColumn fx:id="columnNama" prefWidth="113.0" text="Nama Travel" />
+                <TableColumn fx:id="columnTime" prefWidth="55.0" text="Jam" />
+                  <TableColumn fx:id="columnTujuan" prefWidth="76.0" text="Tujuan" />
+                  <TableColumn fx:id="columnAlamat" prefWidth="173.0" text="Alamat" />
+              </columns>
+            </TableView>
+            <JFXButton fx:id="showButton" layoutX="31.0" layoutY="14.0" onAction="#showData" text="SHOW" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
